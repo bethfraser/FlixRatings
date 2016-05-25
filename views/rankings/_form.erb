@@ -1,0 +1,31 @@
+<h1>Add a ranking</h1>
+
+<form action="/rankings" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name"><br>
+  <label for="first">#1 Film of the decade</label>
+  <select name="first">
+  <% @films.each do |film| %>
+  <option value="<%= film.id %>"><%= film.title %></option>
+  <% end %>
+  </select>
+  <input type="text" name="first_comments" placeholder="Add comments here"><br>
+
+  <label for="second">#2 Film of the decade</label>
+  <select name="second">
+  <% @films.each do |film| %>
+  <option value="<%= film.id %>"><%= film.title %></option>
+  <% end %>
+  </select>
+  <input type="text" name="second_comments" placeholder="Add comments here"><br>
+
+  <label for="third">#3 Film of the decade</label>
+  <select name="third">
+  <% @films.each do |film| %>
+  <option value="<%= film.id %>"><%= film.title %></option>
+  <% end %>
+  </select>
+  <input type="text" name="third_comments" placeholder="Add comments here"><br>
+
+  <input type='submit' value="Submit ranking">
+</form>

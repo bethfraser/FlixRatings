@@ -1,0 +1,6 @@
+
+<h2>All Films</h2>
+
+<% for film in @films %>
+<a href="/films/<%= film.id %>"><%= film.title %></a><br>
+<% end %>

@@ -1,5 +1,7 @@
 require_relative '../db/sqlrunner'
 require_relative '../models/ranking'
+require 'open-uri'
+require 'json'
 
 class Film
 
@@ -7,10 +9,10 @@ class Film
 
   def initialize(options)
     @id = options['id']
-    @title = options['title']
+    @title = options['title'].gsub("'", "&rsquo;")
     @year = options['year'].to_i
-    @imdb_rating = options['imdb_rating'].to_i
-    @summary = options['summary']
+    @imdb_rating = options['imdb_rating'].to_f
+    @summary = options['summary'].gsub("'", "&rsquo;")
     @poster_image = options['poster_image']
   end
 
@@ -22,16 +24,23 @@ class Film
 
   def user_rating()
     rating = 0
-    rankings = self.rankings()
-    for ranking in rankings
-      rating += ranking.points
+    if self.rankings().length > 0 
+      for ranking in self.rankings()
+        rating += ranking.points
+      end
+      return rating / rankings.length
+    else
+      return 0
     end
-    return rating / rankings.length
   end
 
   def combined_rating()
-    combined_total = (@imdb_rating * 10) + self.user_rating() 
-    return combined_total / 2
+    combined_total = (@imdb_rating * 10) + self.user_rating()
+    if self.user_rating() > 0
+      return combined_total / 2
+    else
+      return combined_total
+    end
   end
 
   def save()
@@ -46,11 +55,33 @@ class Film
     return Film.map_items(sql)
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM films WHERE id = #{id};"
+    return Film.map_item(sql)
+  end
+
+  def self.search_films(params)
+    title = params["title"].gsub(" ", "%20")
+    if params[:year] != ""
+      film_string = "http://www.omdbapi.com/?t=#{title}&y=#{params[:year]}&r=json"
+    else
+      film_string = "http://www.omdbapi.com/?t=#{title}&r=json"
+    end
+    film1 = open(film_string)
+    response_status = film1.status
+    response_body = JSON.parse(film1.read)
+    return response_body
+  end
+
   def self.delete_all()
     sql = "DELETE FROM films"
     SqlRunner.run_sql(sql)
   end
 
+  def self.destroy(id)
+    sql = "DELETE FROM films WHERE id = #{id}"
+    SqlRunner.run_sql(sql)
+  end
 
   def self.map_items(sql)
     film = SqlRunner.run_sql(sql)

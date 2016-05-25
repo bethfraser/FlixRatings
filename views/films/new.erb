@@ -1,0 +1,27 @@
+<h2>Search Results</h2>
+
+<% if @films["Response"] == "False" %>
+Film not found! Try searching again.<br>
+<%= @params %>
+<% else %>
+
+<form action="/films" method="post">
+<%= @films["Title"] %><br>
+<%= @films["Year"] %><br>
+<%= @films["imdbRating"] %><br>
+<%= @films["Plot"] %><br>
+<img src="<%= @films["Poster"] %>"><br>
+<input type="hidden" name="title" value="<%= @films["Title"] %>">
+<input type="hidden" name="year" value="<%= @films["Year"] %>">
+<input type="hidden" name="imdb_rating" value="<%= @films["imdbRating"] %>">
+<input type="hidden" name="summary" value="<%= @films["Plot"] %>">
+<input type="hidden" name="poster_image" value="<%= @films["Poster"] %>">
+
+
+<input type="submit" value="Save Film">
+
+</form>
+Not the right film? Go back. 
+
+
+<% end %>

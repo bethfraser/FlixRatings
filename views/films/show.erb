@@ -1,0 +1,21 @@
+<h2><%= @film.title %></h2>
+
+<%= @film.year %><br>
+IMDB rating: <%= @film.imdb_rating %><br>
+<%= @film.summary %>
+<br><br>
+<h3>Rankings Info</h3>
+<% @film.rankings.each do |ranking| %>
+<%= ranking.name %> - <%= ranking.ranking %><br>
+<%= ranking.comments %><br><br>
+<% end %>
+
+User score: <%= @film.user_rating %><br>
+Combined score: <%= @film.combined_rating %>
+
+<br><br>
+
+<form action='/films/<%= @film.id %>/delete' method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete">
+</form>

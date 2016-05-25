@@ -6,9 +6,9 @@ Film.delete_all()
 Ranking.delete_all()
 
 
-film1 = Film.new({'title' => "Jaws", "year" => 1975, 'imdb_rating' => 7}).save
-film2 = Film.new({'title' => "Taxi Driver", "year" => 1976, 'imdb_rating' => 8}).save
-film3 = Film.new({'title' => "Star Wars", "year" => 1977, 'imdb_rating' => 9}).save
+film1 = Film.new({'title' => "Jaws", "year" => 1975, 'imdb_rating' => 7, "summary" => "Great!"}).save
+film2 = Film.new({'title' => "Taxi Driver", "year" => 1976, 'imdb_rating' => 8, "summary" => "Great!"}).save
+film3 = Film.new({'title' => "Star Wars", "year" => 1977, 'imdb_rating' => 9, "summary" => "Great!"}).save
 
 ranking1 = Ranking.new({"film_id" => film1.id, "ranking" => 1, "name" => "George"}).save
 ranking2 = Ranking.new({"film_id" => film2.id, "ranking" => 2, "name" => "George"}).save
