@@ -4,21 +4,15 @@ require_relative '../models/film'
 require_relative '../models/ranking'
 
 
-# get '/films' do
-#   @films = Film.all
-#   erb :'films/index'
-# end
-
-get '/rankings/new' do
-  @films = Film.all()
+post '/rankings/decade' do
+  @films = Decade.new(params['decade']).films
+  @decade_title = params['decade'] + "s"
   erb :'/rankings/new'
 end
 
-# post '/films/find' do
-#   @params = params
-#   @films = Film.search_films(params)
-#   erb :'/films/new'
-# end
+get '/rankings/choosedecade' do
+  erb :'/rankings/choosedecade'
+end
 
 post '/rankings' do
   @ranking1 = Ranking.new({ "film_id" => params[:first].to_i, "ranking" => 1, "name" => params[:name], "comments" => params[:first_comments]})
