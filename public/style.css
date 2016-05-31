@@ -2,6 +2,27 @@ body {
   font-family: "Trebuchet MS";
 }
 
+a {
+  color: navy;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .poster-med {
   height: 200px;
+}
+
+.rankings-list li:nth-child(1) a {
+  color:   #00CC66;
+}
+
+.rankings-list li:nth-child(2) a {
+  color: #12BA9C;
+}
+
+.rankings-list li:nth-child(3) a {
+  color:  #24A8D1;
 }

@@ -9,3 +9,8 @@ get '/' do
   @decades = Decade.all()
   erb :'decades/index'
 end
+
+get '/decades/:decade' do
+  @decade = Decade.new(params['decade'])
+  erb :'/decades/show'
+end

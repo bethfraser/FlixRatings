@@ -1,0 +1,26 @@
+<h2><%= @decade.start_year.to_s + "s" %></h2> 
+
+<h3>Top Films:</h3>
+<ol>
+<% for film in @decade.top_films %>
+
+  <li><%= film.title %></li>
+
+<% end %>
+</ol>
+
+<h3>All films:</h3>
+<p>
+<% for film in @decade.films %>
+
+  <%= film.title %><br>
+
+<% end %>
+<br>
+<a href="/films/find">Add New Film</a>
+</p>
+
+<form action="/rankings/decade" method="post">
+  <input type="hidden" name="decade" value="<%= @decade.start_year %>">
+  <input type="submit" value="Add new ranking">
+</form>

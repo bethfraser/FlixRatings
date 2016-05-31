@@ -1,7 +1,7 @@
 
 <% for decade in @decades %>
-<h2><%= decade.start_year.to_s + "s" %></h2>
-<ol>
+<h2><a href="/decades/<%= decade.start_year %>"><%= decade.start_year.to_s + "s" %></a></h2>
+<ol class="rankings-list">
   <% for film in decade.top_films %>
   <li><a href="/films/<%= film.id %>"><%= film.title %></a></li>
   <% end %>

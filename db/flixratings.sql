@@ -7,7 +7,7 @@ CREATE TABLE films(
   title VARCHAR(255),
   year INT4,
   imdb_rating FLOAT4,
-  summary VARCHAR(255),
+  summary TEXT,
   poster_image VARCHAR(255)
 );
 
@@ -15,6 +15,6 @@ CREATE TABLE rankings(
   id serial4 PRIMARY KEY,
   film_id int4 references films(id) ON DELETE CASCADE,
   ranking INT4,
-  comments VARCHAR(255),
+  comments TEXT,
   name VARCHAR(255)
 );
