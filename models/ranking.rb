@@ -7,33 +7,16 @@ class Ranking
 
   def initialize(options)
     @id = options['id']
-    @film_id = options['film_id']
-    @ranking = options['ranking'].to_i
+    @first_film_id = options['first_film_id']
+    @second_film_id = options['second_film_id']
+    @third_film_id = options['third_film_id']
     @comments = options['comments']
-    @name = options['name']
-  end
-
-  def points()
-    points = 0
-    case @ranking
-      when 1
-        points = 100
-      when 2
-        points = 90
-      when 3
-        points = 80
-      end
-    return points
-  end
-
-  def film()
-    sql = "SELECT * FROM films WHERE id = #{@film_id}"
-    result = Film.map_item(sql)
-    return result
+    @decade = options['decade']
+    @user_id = options['user_id']
   end
 
   def save()
-    sql = "INSERT INTO rankings (film_id, ranking, comments, name) VALUES (#{@film_id}, #{@ranking}, '#{@comments}', '#{@name}' ) RETURNING *"
+    sql = "INSERT INTO rankings (first_film_id, second_film_id, third_film_id, decade, comments, user_id) VALUES (#{@first_film_id}, #{@second_film_id}, #{@third_film_id}, #{@decade}, '#{@comments}', #{@user_id} ) RETURNING *"
     ranking = SqlRunner.run_sql(sql).first
     result = Ranking.new( ranking )
     return result

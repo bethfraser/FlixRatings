@@ -1,5 +1,6 @@
 DROP TABLE rankings;
 DROP TABLE films;
+DROP TABLE users;
 
 
 CREATE TABLE films(
@@ -8,13 +9,23 @@ CREATE TABLE films(
   year INT4,
   imdb_rating FLOAT4,
   summary TEXT,
-  poster_image VARCHAR(255)
+  poster_image TEXT
+);
+
+CREATE TABLE users(
+  id serial4 PRIMARY KEY,
+  name VARCHAR(255),
+  password VARCHAR(255),
+  current_user_status CHAR(1)
 );
 
 CREATE TABLE rankings(
   id serial4 PRIMARY KEY,
-  film_id int4 references films(id) ON DELETE CASCADE,
-  ranking INT4,
-  comments TEXT,
-  name VARCHAR(255)
+  user_id int4 references users(id) ON DELETE CASCADE,
+  first_film_id int4 references films(id) ON DELETE CASCADE,
+  second_film_id int4 references films(id) ON DELETE CASCADE,
+  third_film_id int4 references films(id) ON DELETE CASCADE,
+  decade INT4,
+  comments TEXT
 );
+

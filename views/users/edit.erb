@@ -1,0 +1,14 @@
+Set current user
+
+<form action="/users/update" method="post">
+Change user:
+<select name="id">
+<% for user in @users %>
+<option value="<%= user.id %>"><%= user.name %></option>
+<% end %>
+</select><br>
+<label for="password">Password:</label>
+<input type="password" name="password">
+
+<input type="submit">
+</form>

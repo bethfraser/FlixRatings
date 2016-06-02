@@ -17,18 +17,23 @@ class Film
   end
 
   def rankings()
-    sql = "SELECT * FROM rankings WHERE film_id = #{@id}"
-    result = Ranking.map_items(sql)
+    sql = "SELECT * FROM rankings WHERE first_film_id = #{@id}"
+    firsts = Ranking.map_items(sql) 
+    sql2 = "SELECT * FROM rankings WHERE second_film_id = #{@id}"
+    seconds = Ranking.map_items(sql2) 
+    sql3 = "SELECT * FROM rankings WHERE third_film_id = #{@id}"
+    thirds = Ranking.map_items(sql3) 
+    result = { firsts: firsts.length, seconds: seconds.length, thirds: thirds.length}
     return result
   end
 
   def user_rating()
     rating = 0
-    if self.rankings().length > 0 
-      for ranking in self.rankings()
-        rating += ranking.points
-      end
-      return rating / rankings.length
+    rankings = self.rankings()
+    total_rankings = rankings[:firsts] + rankings[:seconds] + rankings[:thirds]
+    if total_rankings > 0 
+      rating = (rankings[:firsts] * 100) + (rankings[:seconds] * 90) + (rankings[:thirds] * 80)
+      return rating / total_rankings
     else
       return 0
     end
