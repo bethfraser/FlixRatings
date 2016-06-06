@@ -1,0 +1,15 @@
+<h2><%= @user.name %></h2>
+
+<h3>Your rankings:</h3>
+<% for ranking in @user.rankings %>
+
+<h3><%= ranking.decade.to_s + "s" %></h3>
+<ol>
+<% for film in ranking.films() %>
+<li><%= film.title %></li>
+<% end %>
+</ol>
+
+<%= ranking.comments  %>
+
+<% end %>

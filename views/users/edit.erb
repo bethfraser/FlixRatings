@@ -1,7 +1,7 @@
-Set current user
+<h2>Change User</h2>
 
 <form action="/users/update" method="post">
-Change user:
+User:
 <select name="id">
 <% for user in @users %>
 <option value="<%= user.id %>"><%= user.name %></option>
@@ -11,4 +11,19 @@ Change user:
 <input type="password" name="password">
 
 <input type="submit">
+</form>
+
+
+<h3>Not a user yet? Sign up:</h3>
+
+<form action="/users/create" method="post">
+  
+<label for="name">Name:</label>
+<input type="text" name="name">
+
+<label for="password">Password:</label>
+<input type="password" name="password">
+
+<input type="submit" value="Sign Up">
+
 </form>

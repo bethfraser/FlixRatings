@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav>
-<a href="/">Home</a> - <a href="/films">All Films</a> - <a href="/rankings/choosedecade">Add New Ranking</a> --- Current User: <%= @user.name %> <a href="/users/edit">Change</a>
+<a href="/">Home</a> - <a href="/films">All Films</a> - <a href="/rankings/choosedecade">Add New Ranking</a> --- Current User: <a href="/users/<%= @user.id %>"><%= @user.name %></a> <a href="/users/edit">Change</a>
 </nav>
 
 <%=yield %>
