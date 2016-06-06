@@ -16,9 +16,14 @@ get '/users/:id' do
 end
 
 post '/users/update' do
-  if User.login?(params[:id], params[:password])
-    User.set_current_user(params[:id])
+  user = User.find_by_name(params[:username])
+  if user
+    if User.login?(user.id, params[:password])
+    User.set_current_user(user.id)
     redirect to('/')
+    else 
+      erb :'/users/wrong_password'
+    end
   else
     erb :'/users/wrong_password'
   end 

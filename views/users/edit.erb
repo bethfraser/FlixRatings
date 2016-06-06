@@ -2,11 +2,7 @@
 
 <form action="/users/update" method="post">
 User:
-<select name="id">
-<% for user in @users %>
-<option value="<%= user.id %>"><%= user.name %></option>
-<% end %>
-</select><br>
+<input type="text" name="username"><br>
 <label for="password">Password:</label>
 <input type="password" name="password">
 

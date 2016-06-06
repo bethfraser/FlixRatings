@@ -19,6 +19,12 @@ class User
     return result
   end
 
+  def self.find_by_name(name)
+    sql = "SELECT * FROM users WHERE name = '#{name}'"
+    result = User.map_item(sql)
+    return result
+  end
+
   def self.login?(id, password)
     sql = "SELECT * FROM users WHERE id = #{id}"
     user = User.map_item(sql)
