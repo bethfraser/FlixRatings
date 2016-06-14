@@ -1,5 +1,6 @@
 
 <% for decade in @decades %>
+<div class="decade-div">
 <h2><a href="/decades/<%= decade.start_year %>"><%= decade.start_year.to_s + "s" %></a></h2>
 <ol class="rankings-list">
   <% for film in decade.top_films %>
@@ -11,6 +12,7 @@
   <input type="hidden" name="decade" value="<%= decade.start_year %>">
   <input type="submit" value="Add new ranking">
 </form>
+</div>
 <% end %>
 
 

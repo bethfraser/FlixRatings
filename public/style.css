@@ -1,15 +1,71 @@
 body {
-  font-family: "Trebuchet MS";
+  font-family: 'Nunito', sans-serif;
+  background-image: url('https://www.ivanklass.com/wp-content/uploads/2016/04/film.jpg');
+  background-size: cover;
+  background-position: fixed;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
-  color: navy;
+  color: grey;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
 }
+
+/* HEADER AND NAVIGATION */
+
+header {
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+header h1 {
+  margin: 0;
+  line-height: 100px;
+  padding-left: 30px;
+  font-size: 3rem;
+}
+
+nav {
+  background-color: #11131f;
+  padding: 20px 30px;
+  color: white;
+}
+
+nav span {
+  float: right;
+}
+
+.change-user {
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  padding: 0 10px;
+  margin-left: 20px;
+}
+
+/* MAIN CONTENT */
+
+.decade-div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 2px solid white;
+  display: inline-block;
+  width: 30%;
+  margin: 10px;
+  vertical-align: top;
+  text-align: center;
+  border-radius: 15px;
+}
+
+/* IMAGES */
 
 .poster-med {
   height: 200px;
