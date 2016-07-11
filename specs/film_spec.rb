@@ -5,12 +5,12 @@ require_relative '../models/film'
 class TestFilm < Minitest::Test
 
   def setup 
-    @film1 = Film.new({"title" => "Jaws", "year" => 1975})
+    @film1 = Film.new({"title" => "Jaws", "year" => 1975, "summary" => "A big shark"})
   end
 
   def test_has_title
     assert_equal(@film1.title, "Jaws")
-  end
+  end 
 
   def test_has_year
     assert_equal(@film1.year, 1975)

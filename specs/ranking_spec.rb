@@ -1,27 +1,29 @@
 require 'minitest/autorun'
 require 'minitest/rg'
 require_relative '../models/ranking'
+require_relative '../models/user'
 
 class TestRanking < Minitest::Test
 
   def setup 
-    @ranking1 = Ranking.new({"film_id" => 1, "ranking" => 1, "name" => "George"})
-    @ranking2 = Ranking.new({"film_id" => 2, "ranking" => 2, "name" => "George"})
-    @ranking3 = Ranking.new({"film_id" => 3, "ranking" => 3, "name" => "George"})
+
+    user1 = User.new({'name' => "Beth", 'password' => 'password'})
+    user2 = User.new({'name' => "Kat", 'password' => 'password'})
+
+    film1 = Film.new({'id' => 1, 'title' => "Jaws", "year" => 1975, 'imdb_rating' => 7, "summary" => "Great!"})
+    film2 = Film.new({'id' => 2, 'title' => "Taxi Driver", "year" => 1976, 'imdb_rating' => 8, "summary" => "Great!"})
+    film3 = Film.new({'id' => 3, 'title' => "Star Wars", "year" => 1977, 'imdb_rating' => 9, "summary" => "Great!"})
+
+    @ranking1 = Ranking.new({"first_film_id" => film1.id, 'second_film_id' => film2.id, 'third_film_id' => film3.id, 'decade' => 1970, 'user_id' => user1.id})
+    @ranking2 = Ranking.new({"first_film_id" => film3.id, 'second_film_id' => film1.id, 'third_film_id' => film2.id, 'decade' => 1970, 'user_id' => user2.id})
+  end
+ 
+  def test_has_film_id
+    assert_equal(@ranking1.first_film_id, 1)
   end
 
-  def test_has_name
-    assert_equal(@ranking1.name, "George")
-  end
-
-  def test_has_ranking
-    assert_equal(@ranking1.ranking, 1)
-  end
-
-  def test_points
-    assert_equal(@ranking1.points, 100)
-    assert_equal(@ranking2.points, 90)
-    assert_equal(@ranking3.points, 80)
+  def test_decade
+    assert_equal(@ranking1.decade, 1970)
   end
 
 end

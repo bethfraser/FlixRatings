@@ -3,7 +3,8 @@ require_relative '../models/film'
 
 class Ranking
 
-  attr_accessor :ranking, :comments, :name, :decade
+  attr_accessor :comments, :decade
+  attr_reader :first_film_id, :second_film_id, :third_film_id
 
   def initialize(options)
     @id = options['id']

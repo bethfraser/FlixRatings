@@ -17,6 +17,5 @@ film3 = Film.new({'title' => "Star Wars", "year" => 1977, 'imdb_rating' => 9, "s
 ranking1 = Ranking.new({"first_film_id" => film1.id, 'second_film_id' => film2.id, 'third_film_id' => film3.id, 'decade' => 1970, 'user_id' => user1.id}).save
 ranking2 = Ranking.new({"first_film_id" => film3.id, 'second_film_id' => film1.id, 'third_film_id' => film2.id, 'decade' => 1970, 'user_id' => user2.id}).save
 
-
 binding.pry
 nil

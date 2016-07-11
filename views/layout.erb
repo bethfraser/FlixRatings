@@ -6,14 +6,16 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-<header>
-  <h1>FlixRatings</h1>
-</header>
-<nav>
-<a href="/">Home</a> - <a href="/films">All Films</a> - <a href="/rankings/choosedecade">Add New Ranking</a>  <span>Current User: <a href="/users/<%= @user.id %>"><%= @user.name %></a> <a href="/users/edit" class="change-user">Change</a></span>
-</nav>
+  <header>
+    <h1>FlixRatings</h1>
+  </header>
+  <nav>
+    <a href="/">Home</a> - <a href="/films">All Films</a> - <a href="/rankings/choosedecade">Add New Ranking</a>  <span>Current User: <a href="/users/<%= @user.id %>"><%= @user.name %></a> <a href="/users/edit" class="change-user">Change</a></span>
+  </nav>
+  <main>
 
+    <%=yield %>
 
-<%=yield %>
+  </main>
 </body>
 </html>
